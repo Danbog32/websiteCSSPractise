@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jokes API</title>
+    <title>Weather API</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -22,7 +22,7 @@
         const catPictureElement = document.getElementById('picture');
 
         function getJoke(){
-            fetch('http://dataservice.accuweather.com/forecasts/v1/daily/1day/324505?apikey=17KCN1PZp6Dbru9y6lrJANG9E3zHTteW&language=en&details=false&metric=true')
+            fetch('http://dataservice.accuweather.com/forecasts/v1/daily/1day/324505?apikey=17KCN1PZp6Dbru9y6lrJANG9E3zHTteW&language=en&details=true&metric=true')
             .then(response => {
                 if(!response.ok){
                     jokeElement.textContent = 'Щось пішло не так';
