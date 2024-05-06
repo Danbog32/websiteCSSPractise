@@ -9,16 +9,11 @@
 <body>
 
     <div class="container">
-        <h1>Jokes API</h1>
+        <h1>Weather API</h1>
         <h2 id="jokes"></h2>
         <h3 id="jokesPunch"></h3>
         <img id="picture" src="" alt="">
-        <select name="cars" id="cars">
-            <option value="kyiv">Kyiv</option>
-            <option value="saab">Saab</option>
-            <option value="mercedes">Mercedes</option>
-            <option value="audi">Audi</option>
-        </select>
+        <img src="" alt="arrow" id="arrow">
         <button onclick="getJoke()">Новий жарт</button>
     </div>
 
@@ -26,9 +21,7 @@
         const jokeElement = document.getElementById('jokes');
         const jokePunchElement = document.getElementById('jokesPunch');
         const catPictureElement = document.getElementById('picture');
-
-        let cityCode = 324505;
-        let userInput = document.querySelector('input');
+        const arrowElement = document.getElementById('arrow');
 
         // array of objects each city has lang and long
 
@@ -55,14 +48,28 @@
             }
         ];
 
+        const citiesCode = {
+            lviv: 324505,
+            kyiv: 324503,
+            odesa: 324502,
+            kharkiv: 324501,
+        };
     
-        console.log(cities.lviv);
+        let cityCode = 3245054;
+
+        console.log(citiesCode.odesa);
 
         function changeCity(city){
-            cityCode = cities[city];
+            cityCode = citiesCode[city];
+            getJoke();
         }
 
         let url = `http://dataservice.accuweather.com/forecasts/v1/daily/1day/${cityCode}?apikey=17KCN1PZp6Dbru9y6lrJANG9E3zHTteW&language=en&details=true&metric=true`;
+
+        // let arrowDeg = 0;
+        // arrowElement.style.transform = `rotate(${arrowDeg}deg)`;
+        
+
 
         function getJoke(){
             fetch(url)
@@ -90,6 +97,9 @@
                 else{
                     jokePunchElement.textContent = 'Сьогодні буде прохолодно';
                 }
+
+                // arrowDeg = data.DailyForecasts[0].Wind.Direction.Degrees;
+                // arrowElement.style.transform = `rotate(${arrowDeg}deg)`;
 
             })
             .catch(error => {
