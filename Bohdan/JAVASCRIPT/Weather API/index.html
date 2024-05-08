@@ -64,6 +64,14 @@
             getJoke();
         }
 
+
+        const food = ["potato", "tomato"];
+
+        let selectedFood = food[0];
+
+
+
+
         let url = `http://dataservice.accuweather.com/forecasts/v1/daily/1day/${cityCode}?apikey=17KCN1PZp6Dbru9y6lrJANG9E3zHTteW&language=en&details=true&metric=true`;
 
         // let arrowDeg = 0;
@@ -90,6 +98,15 @@
                 let maxTemp = data.DailyForecasts[0].Temperature.Maximum.Value;
 
                 jokeElement.textContent = maxTemp;
+
+                let label = data.hits.recipe.label;
+                let image = data.hits.recipe.image;
+
+                let ingredients = data.hits.recipe.ingredients[0].text;
+
+                let calories = data.hits.recipe.calories;
+
+
 
                 if(maxTemp > 20){
                     jokePunchElement.textContent = 'Сьогодні буде спекотно';
