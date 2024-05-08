@@ -1,0 +1,152 @@
+
+body {
+    height: 100%;
+    font-family: Arial, sans-serif;
+    background-image: linear-gradient(to top, rgb(188, 123, 189), rgb(252, 160, 206));
+}
+#message {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    color: #fff; 
+    font-size: 24px; 
+}
+
+
+.general-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.day-container {
+    height: 700px;
+    width: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-image: url(images/clear3.jpg);
+    background-size: cover; 
+    background-position: center;
+    margin: 20px;
+}
+.night-container{
+    height: 700px;
+    width: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-image: url(images/cloudy1.jpg);
+    background-size: cover; 
+    background-position: center;
+    margin: 20px;
+}
+
+.container {
+    text-align: center;
+}
+
+.day-h {
+    color: #333;
+    font-size: 32px;
+}
+.night-h{
+    color: #e7c8c8;
+    font-size: 32px;
+}
+
+#message {
+    position: absolute;
+    left: 50%;
+    text-align: center;
+    color: #4e4e4e;
+    font-size: 24px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    line-height: 1.5;
+    letter-spacing: 1px;
+}
+#nightStatus,#nightTemp{
+    margin: 10px 0;
+    color: #e7c8c8;
+}
+
+.button-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    margin-top: -60px;
+}
+button {
+    width: 120px;
+    height: 50px;
+    padding: 10px 20px; 
+    font-size: 14px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+button span{
+    font-size: 15px;
+}
+
+button:hover {
+    background-color: #0056b3;
+    transform: scale(0.95);
+}
+select {
+    width: 200px;
+    height: 40px;
+    padding: 10px;
+    margin: 20px;
+    font-size: 16px; 
+    font-family: Arial, sans-serif; 
+    color: #333; 
+    border: 1px solid #ccc;
+    border-radius: 5px; 
+    background-color: #fff; 
+    outline: none; 
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+}
+
+select:hover {
+    border-color: #007bff;
+}
+
+.arrow-img {
+    width: 150px;
+    height: 100px;
+    position: relative;
+}
+
+.arrow-img img {
+    width: 100%;
+    height: auto; 
+    transform-origin: center center; 
+    transform: rotate(0deg); 
+    position: absolute;
+    bottom: 0; 
+    left: 50%; 
+    transition: transform 0.3s ease; 
+}
+
+.arrow-text {
+    display: flex;
+    justify-content: center;
+    font-size: 16px;
+    color: #fff;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
