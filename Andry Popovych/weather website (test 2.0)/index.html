@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather Forecast</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h2 id="message"></h2>
+    <div class="general-container">
+      <div class="day-container">
+        <div class="container">
+          <h1 class="day-h">Weather day Forecast</h1>
+          <br />
+          <h3 id="dayTemp"></h3>
+          <h3 id="dayStatus"></h3>
+          <br />
+        </div>
+      </div>
+      <div>
+        <div class="arrow-text">
+          wind (percentage)
+        </div>
+      <div class="arrow-img">
+        <img src="images/arrow for wind.png" alt="arrow">
+      </div>
+    </div>
+      <!-- <div class="night-container">
+        <div class="container">
+          <h1 class="night-h">Weather night Forecast</h1>
+          <br />
+          <h3 id="nightTemp"></h3>
+          <h3 id="nightStatus"></h3>
+          <br />
+        </div>
+      </div> -->
+    </div>
+    <br />
+    <div id="overlay" class="button-container">
+      <select id="citySelect">
+        <option value="Lviv">Lviv</option>
+        <option value="Kyiv">Kyiv</option>
+        <option value="Odessa">Odessa</option>
+      </select>
+      <button id="overlayButton" onclick="getWeatherForecast()">
+        Check Weather
+      </button>
+    </div>
+
+    <script>
+      const messageElement = document.getElementById("message");
+      const dayTempElement = document.getElementById("dayTemp");
+      const nightTempElement = document.getElementById("nightTemp");
+      const dayStatusElement = document.getElementById("dayStatus");
+      const nightStatusElement = document.getElementById("nightStatus");
+
+      function getWeatherForecast() {
+        const now = new Date();
+        const dayOfWeek = now.toLocaleString("en-US", { weekday: "long" });
+        const dayOfMonth = now.getDate();
+        const hours = now.getHours();
+        const minutes = now.getMinutes();
+
+        const message = `Today is day ${dayOfMonth}th (${dayOfWeek}) and the time is ${hours}:${minutes}.`;
+        messageElement.textContent = message;
+
+        const apiKey = "aaf766c93ce0bf833e32f31ae1110b6b";
+
+        const citySelect = document.getElementById("citySelect");
+        const selectedCity = citySelect.value;
+        const cities = [
+          {
+            city: "Lviv",
+            lat: "49.8397",
+            lon: "24.0297",
+          },
+          {
+            city: "Kyiv",
+            lat: "50.4501",
+            lon: "30.5234",
+          },
+          {
+            city: "Odessa",
+            lat: "46.4825",
+            lon: "30.7233",
+          },
+        ];
+
+        let lat; 
+        let lon;
+        for (const cityData of cities) {
+          if (cityData.city === selectedCity) {
+            lat = cityData.lat;
+            lon = cityData.lon;
+          }
+        }
+
+        const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+
+        fetch(url)
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Network error");
+            }
+            return response.json();
+          })
+          .then((data) => {
+            console.log(data);
+            const dayTemp = data.main.temp;
+            const dayStatus = dayTemp > 15 ? "Clear" : "Cloudy";
+            dayTempElement.textContent = `Day Temperature: ${dayTemp}°C`;
+            dayStatusElement.textContent = `Day Status: ${dayStatus}`;
+            const windDirection = data.wind.deg; 
+            const arrowImg = document.querySelector('.arrow-img img');
+            arrowImg.style.transform = `rotate(${windDirection}deg)`; 
+          })
+          .catch((error) => {
+            dayTempElement.textContent = "Oops! Something went wrong";
+            dayStatusElement.textContent = "";
+            console.error(error);
+          });
+      }
+    </script>
+  </body>
+</html>
