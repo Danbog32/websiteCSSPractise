@@ -14,10 +14,12 @@
     <script>
         const pictureUpload = document.getElementById('img');
 
-        pictureUpload.addEventListener('change', (e) => {
-            const file = e.target.files[0];
+        pictureUpload.addEventListener('change', (event) => {
+            const file = event.target.files[0];
             const reader = new FileReader();
+
             reader.readAsDataURL(file);
+
             reader.onload = () => {
                 localStorage.setItem('img', reader.result);
             }
