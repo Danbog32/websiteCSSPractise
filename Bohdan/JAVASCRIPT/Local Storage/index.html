@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Local storage practice</title>
+</head>
+<body>
+    <h1>Local storage</h1>
+    <input type="file" name="img" id="img">
+
+    <script>
+        const pictureUpload = document.getElementById('img');
+
+        pictureUpload.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = () => {
+                localStorage.setItem('img', reader.result);
+            }
+        });
+    </script>
+
+</body>
+</html>
