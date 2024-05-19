@@ -11,7 +11,8 @@
     <input type="file" name="img" id="uploderPhotos">
 
     <input type="text">
-    <button>Save</button>
+
+    <button onclick="saveName()">Save</button>
 
     <a href="gallery.html">Переглянути галерею</a>
 
@@ -29,8 +30,13 @@
                 localStorage.setItem('img', reader.result);
             }
         });
-        
-        sessionStorage.setItem('name', 'Vasya');
+
+        function saveName() {
+            const input = document.querySelector('input[type="text"]');
+            const name = input.value;
+
+            sessionStorage.setItem('name', name);
+        }
    
 
 
