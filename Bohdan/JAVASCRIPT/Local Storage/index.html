@@ -8,14 +8,19 @@
 </head>
 <body>
     <h1>Local storage</h1>
-    <input type="file" name="img" id="img">
+    <input type="file" name="img" id="uploderPhotos">
+
+    <input type="text">
+    <button>Save</button>
+
     <a href="gallery.html">Переглянути галерею</a>
 
     <script>
-        const pictureUpload = document.getElementById('img');
+        const pictureUpload = document.getElementById('uploderPhotos');
 
         pictureUpload.addEventListener('change', (event) => {
             const file = event.target.files[0];
+
             const reader = new FileReader();
 
             reader.readAsDataURL(file);
@@ -24,6 +29,12 @@
                 localStorage.setItem('img', reader.result);
             }
         });
+        
+        sessionStorage.setItem('name', 'Vasya');
+   
+
+
+
     </script>
 
 </body>

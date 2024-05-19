@@ -7,6 +7,20 @@
 </head>
 <body>
     <h1>Gallery</h1>
+    <img src="" id="pictureGallery" alt="photo">
+
+    <button onclick="clearPics()">Clear pics</button>
+
     <a href="index.html">Завантажити фото</a>
+
+    <script>
+        const pictureGallery = document.getElementById('pictureGallery');
+        pictureGallery.src = localStorage.getItem('img');
+
+        function clearPics() {
+            localStorage.clear();
+            pictureGallery.src = '';
+        }
+    </script>
 </body>
 </html>
