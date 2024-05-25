@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Рецепти</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <button onclick="getRecipes('carrot')">Cтрави з моркви</button>
+    <div id="recipeContainer" class="card-container"></div>
+
+    <template id="recipeTemplate">
+      <div class="recipe-card">
+        <img class="recipe-img" alt="" />
+        <h3 class="recipe-link"></h3>
+      </div>
+    </template>
+
+    <script>
+      function getRecipes(product) {
+        const url = `https://api.edamam.com/search?q=${product}&app_id=12759c17&app_key=a9d569ad2fe69a701f26d452cd43da0b`;
+
+        fetch(url)
+          .then((response) => response.json())
+          .then((data) => {
+            const recipes = data.hits;
+            const recipeContainer = document.getElementById("recipeContainer");
+
+            const recipeTemplate = document.getElementById("recipeTemplate");
+
+            recipeContainer.innerHTML = "";
+
+            recipes.forEach((recipe) => {
+              const recipeName = recipe.recipe.label;
+              const recipeURL = recipe.recipe.url;
+              const recipeImage = recipe.recipe.image;
+
+              const recipeClone = recipeTemplate.content.cloneNode(true);
+
+              const recipeLink = recipeClone.querySelector(".recipe-link");
+              recipeLink.href = recipeURL;
+              recipeLink.textContent = recipeName;
+
+              const recipeImg = recipeClone.querySelector(".recipe-img");
+              recipeImg.src = recipeImage;
+              recipeImg.alt = recipeName;
+
+              recipeContainer.appendChild(recipeClone);
+            });
+          })
+          .catch((error) => {
+            console.log("Помилка:", error);
+          });
+      }
+    </script>
+  </body>
+</html>
