@@ -8,38 +8,45 @@
 </head>
 <body>
     <h1>Local storage</h1>
-    <input type="file" name="img" id="uploderPhotos">
+    <!-- <input type="file" name="img" id="uploderPhotos"> -->
 
-    <input type="text">
-
+    <!-- <input type="text"> -->
+<!-- 
     <button onclick="saveName()">Save</button>
 
-    <a href="gallery.html">Переглянути галерею</a>
+    <a href="gallery.html">Переглянути галерею</a> -->
 
     <script>
-        const pictureUpload = document.getElementById('uploderPhotos');
+        // const pictureUpload = document.getElementById('uploderPhotos');
 
-        pictureUpload.addEventListener('change', (event) => {
-            const file = event.target.files[0];
+        // pictureUpload.addEventListener('change', (event) => {
+        //     const file = event.target.files[0];
 
-            const reader = new FileReader();
+        //     const reader = new FileReader();
 
-            reader.readAsDataURL(file);
+        //     reader.readAsDataURL(file);
 
-            reader.onload = () => {
-                localStorage.setItem('img', reader.result);
-            }
-        });
+        //     reader.onload = () => {
+        //         localStorage.setItem('img', reader.result);
+        //     }
+        // });
 
-        function saveName() {
-            const input = document.querySelector('input[type="text"]');
-            const name = input.value;
+        // function saveName() {
+        //     const input = document.querySelector('input[type="text"]');
+        //     const name = input.value;
 
-            sessionStorage.setItem('name', name);
-        }
+        //     sessionStorage.setItem('name', name);
+        // }
    
+        let name = "John Smith";
 
+        let date = new Date(Date.now() + 86400e3);
 
+        console.log(name);
+        console.log(date);
+        
+        
+        document.cookie = `name=${name}; expires=${date.toUTCString()}; path=/`;
 
     </script>
 
