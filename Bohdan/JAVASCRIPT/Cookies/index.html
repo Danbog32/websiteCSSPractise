@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Local storage practice</title>
+</head>
+<body>
+    <h1>Cookies Practice</h1>
+
+    <input id="userInput" type="text">
+    <button id="save">Save</button>
+    <button id="deleteBtn">Delete</button>\
+
+    <br>
+    <br>
+    <br>
+
+    <p id="display"></p>
+    <button id="displayCookies">Show</button>
+
+
+    <script>
+        const userInput = document.getElementById('userInput');
+        const save = document.getElementById('save');
+        const deleteBtn = document.getElementById('deleteBtn');
+        const display = document.getElementById('display');
+        const displayCookies = document.getElementById('displayCookies');
+
+        save.addEventListener('click', () => {
+            let name = userInput.value;
+            let date = new Date(Date.now() + 20000);
+            // console.log(date);
+            // console.log(date.toUTCString());
+            document.cookie = `name=${name}; expires=${date.toUTCString()}; path=/`;
+        });
+
+        deleteBtn.addEventListener('click', () => {
+            document.cookie = 'name=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/';
+            userInput.value = '';
+        });
+
+        displayCookies.addEventListener('click', () => {
+
+            if(document.cookie === '') {
+                display.innerHTML = 'No cookies found';
+                return;
+            }
+
+            // console.log(document.cookie.split(';'));
+            let cookies = document.cookie.split(';');
+            // console.log(cookies);
+            let name = cookies[0].split('=')[1];
+            // console.log(name);
+            display.innerHTML = name;
+        });
+
+
+
+
+    </script>
+
+</body>
+</html>
